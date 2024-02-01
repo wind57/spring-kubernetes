@@ -1,4 +1,5 @@
 # Pre requisits: <br>
+Docker. <br>
 minikube. <br>
 kubernetes-cli also now as kubectl. <br>
 <br>

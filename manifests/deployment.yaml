@@ -1,0 +1,55 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: spring-kubernetes
+  namespace: study
+  labels:
+    app: spring-kubernetes
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: spring-kubernetes
+  template:
+    metadata:
+      labels:
+        app: spring-kubernetes
+    spec:
+      serviceAccountName: spring-kubernetes
+      containers:
+        - name: spring-kubernetes
+          image: marsdeimos/spring-kubernetes:1.1
+          ports:
+            - name: http
+              containerPort: 8080
+              protocol: TCP
+          env:
+            - name: KUBE_CONFIGMAP
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.name
+            - name: NAMESPACE
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.namespace
+            - name: MESSAGE
+              value: "Hello from kubernetes"
+          livenessProbe:
+            httpGet:
+              path: /spring-kubernetes/actuator/health/liveness
+              port: http
+            initialDelaySeconds: 60
+            failureThreshold: 3
+          readinessProbe:
+            httpGet:
+              path: /spring-kubernetes/actuator/health/readiness
+              port: http
+            initialDelaySeconds: 60
+            failureThreshold: 3
+          resources:
+            requests:
+              cpu: 10m
+              memory: 128Mi
+            limits:
+              cpu: 50m
+              memory: 512Mi

@@ -1,0 +1,15 @@
+spring:
+  application:
+    name: spring-kubernetes
+  cloud:
+    config:
+      enabled: false
+    kubernetes:
+      config:
+        enabled: true
+        enable-api: true
+        name: spring-kubernetes
+        labels:
+          app: spring-kubernetes
+        sources:
+          - name: spring-kubernetes

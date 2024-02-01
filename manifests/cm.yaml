@@ -1,0 +1,24 @@
+kind: ConfigMap
+apiVersion: v1
+metadata:
+  name: spring-kubernetes
+  namespace: study
+data:
+  application.yml: |-
+    spring:
+      application:
+        name: spring-kubernetes
+      profiles:
+        active: kubernetes
+    springdoc:
+      swagger-ui:
+        path: /swagger-ui.html
+    server:
+      servlet:
+        context-path: /spring-kubernetes
+    management:
+      endpoint:
+        health:
+          probes:
+            enabled: true
+    message=${MESSAGE}

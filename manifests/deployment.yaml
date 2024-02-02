@@ -18,11 +18,13 @@ spec:
       serviceAccountName: spring-kubernetes
       containers:
         - name: spring-kubernetes
-          image: marsdeimos/spring-kubernetes:1.1
+          image: spring-kubernetes:1.0.2
+          imagePullPolicy: IfNotPresent
           ports:
             - name: http
               containerPort: 8080
               protocol: TCP
+              hostPort: 8080
           env:
             - name: KUBE_CONFIGMAP
               valueFrom:
@@ -46,10 +48,3 @@ spec:
               port: http
             initialDelaySeconds: 60
             failureThreshold: 3
-          resources:
-            requests:
-              cpu: 10m
-              memory: 128Mi
-            limits:
-              cpu: 50m
-              memory: 512Mi

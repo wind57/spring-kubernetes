@@ -11,7 +11,7 @@
 	</parent>
 	<groupId>br.com.deimos</groupId>
 	<artifactId>spring-kubernetes</artifactId>
-	<version>1.0.0</version>
+	<version>1.0.2</version>
 	<name>spring-kubernetes</name>
 	<description>Demo project for Spring Boot</description>
 	<properties>
@@ -19,6 +19,14 @@
 		<spring-cloud.version>2023.0.0</spring-cloud.version>
 	</properties>
 	<dependencies>
+
+		<dependency>
+			<groupId>ch.qos.logback</groupId>
+			<artifactId>logback-classic</artifactId>
+			<version>1.4.14</version>
+		</dependency>
+
+
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-actuator</artifactId>
@@ -84,6 +92,13 @@
 						</exclude>
 					</excludes>
 				</configuration>
+				<executions>
+					<execution>
+						<goals>
+							<goal>build-image-no-fork</goal>
+						</goals>
+					</execution>
+				</executions>
 			</plugin>
 		</plugins>
 	</build>

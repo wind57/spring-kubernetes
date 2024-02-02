@@ -9,6 +9,7 @@ kubernetes-cli also now as kubectl. <br>
 2° run `minikube start` <br>
 3° run:
 ```
+kubectl create ns study
 kubectl apply -f manifests/service.yaml
 kubectl apply -f manifests/serviceaccount.yaml
 kubectl apply -f manifests/rolebinding.yaml

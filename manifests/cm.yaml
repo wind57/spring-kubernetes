@@ -21,4 +21,3 @@ data:
         health:
           probes:
             enabled: true
-    message=${MESSAGE}
